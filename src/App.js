@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 class App extends Component {
   constructor(){
@@ -9,13 +10,22 @@ class App extends Component {
   }
 
   nextBtn(){
-    console.log("next");
+    window.scrollTo(500, 0);
+    let elmnt = document.getElementsByClassName("item-navigation");
+    // elmnt.scrollTo(500, 0);
+    console.log(elmnt);
+  }
+
+
+
+  previousBtn(){
+    console.log("back");
   }
 
   render() {
     return (
       <div className="App">
-        <div className={ "items-container "  }>
+        <div className="items-container ">
           <div className="item-wrapper">
             <div className="item-navigation">
                 <div className="items" style={{ background: "blue" }}>
@@ -50,7 +60,7 @@ class App extends Component {
                 </div>
             </div>
 
-            <button className="btn-left btn" >
+            <button className="btn-left btn" onClick={ this.previousBtn }>
               <i> </i>
             </button>
 

@@ -16,7 +16,7 @@
 
 .item-navigation{
   display: flex;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .item-details{
