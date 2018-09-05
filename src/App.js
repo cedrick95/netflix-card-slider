@@ -10,16 +10,13 @@ class App extends Component {
   }
 
   nextBtn(){
-    window.scrollTo(500, 0);
-    let elmnt = document.getElementsByClassName("item-navigation");
-    // elmnt.scrollTo(500, 0);
-    console.log(elmnt);
+    document.querySelector(".item-navigation").scrollBy(500,0)
   }
 
 
 
   previousBtn(){
-    console.log("back");
+    document.querySelector(".item-navigation").scrollBy(-500,0)
   }
 
   render() {
@@ -28,44 +25,91 @@ class App extends Component {
         <div className="items-container ">
           <div className="item-wrapper">
             <div className="item-navigation">
-                <div className="items" style={{ background: "blue" }}>
-
+                <div className="items">
+                  <img src={require('./assets/img/card1.png')} />
                 </div>
-                <div className="items" style={{ background: "red" }}>
-
+                <div className="items">
+                  <img src={require('./assets/img/card2.png')} />
                 </div>
-                <div className="items " style={{ background: "orange" }}>
-
+                <div className="items">
+                  <img src={require('./assets/img/card3.png')} />
                 </div>
-                <div className="items one" style={{ background: "black" }}>
-
+                <div className="items">
+                  <img src={require('./assets/img/card4.png')} />
                 </div>
-                <div className="items" style={{ background: "brown" }}>
 
+                <div className="items">
+                  <img src={require('./assets/img/card1.png')} />
                 </div>
-                <div className="items" style={{ background: "yellow" }}>
-
+                <div className="items">
+                  <img src={require('./assets/img/card2.png')} />
                 </div>
-                <div className="items two" style={{ background: "green" }}>
-
+                <div className="items">
+                  <img src={require('./assets/img/card3.png')} />
                 </div>
-                <div className="items" style={{ background: "purple" }}>
-
+                <div className="items">
+                  <img src={require('./assets/img/card4.png')} />
                 </div>
-                <div className="items" style={{ background: "pink" }}>
 
+                <div className="items">
+                  <img src={require('./assets/img/card1.png')} />
                 </div>
-                <div className="items" style={{ background: "magenta" }}>
+                <div className="items">
+                  <img src={require('./assets/img/card2.png')} />
+                </div>
+                <div className="items">
+                  <img src={require('./assets/img/card3.png')} />
+                </div>
+                <div className="items">
+                  <img src={require('./assets/img/card4.png')} />
+                </div>
 
+                <div className="items">
+                  <img src={require('./assets/img/card1.png')} />
+                </div>
+                <div className="items">
+                  <img src={require('./assets/img/card2.png')} />
+                </div>
+                <div className="items">
+                  <img src={require('./assets/img/card3.png')} />
+                </div>
+                <div className="items">
+                  <img src={require('./assets/img/card4.png')} />
+                </div>
+
+                <div className="items">
+                  <img src={require('./assets/img/card1.png')} />
+                </div>
+                <div className="items">
+                  <img src={require('./assets/img/card2.png')} />
+                </div>
+                <div className="items">
+                  <img src={require('./assets/img/card3.png')} />
+                </div>
+                <div className="items">
+                  <img src={require('./assets/img/card4.png')} />
+                </div>
+
+                <div className="items">
+                  <img src={require('./assets/img/card1.png')} />
+                </div>
+                <div className="items">
+                  <img src={require('./assets/img/card2.png')} />
+                </div>
+                <div className="items">
+                  <img src={require('./assets/img/card3.png')} />
+                </div>
+                <div className="items">
+                  <img src={require('./assets/img/card4.png')} />
                 </div>
             </div>
 
-            <button className="btn-left btn" onClick={ this.previousBtn }>
-              <i> </i>
+            <button className="btn-nav left" onClick={ this.previousBtn }>
+              <img src="http://simpleicon.com/wp-content/uploads/arrow-18.png" height={50} width={50} />
             </button>
 
-            <button className="btn-right btn" onClick={ this.nextBtn }>
-              <i>  </i>
+            <button className="btn-nav right" onClick={ this.nextBtn }>
+              <img src="http://simpleicon.com/wp-content/uploads/arrow-18.png" height={50} width={50} />
             </button>
 
           </div>
