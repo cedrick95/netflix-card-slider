@@ -1,3 +1,6 @@
+* {
+  transition: 1s; }
+
 .App {
   padding-top: 130px; }
 
@@ -13,20 +16,27 @@
   overflow: hidden;
   position: relative; }
 
+.item-active {
+  border: 2px solid;
+  padding: 10px;
+  transition: 0s; }
+
 .item-navigation {
   display: flex;
   overflow: hidden;
   scroll-behavior: smooth;
-  justify-content: center;
   align-items: center;
-  height: 255px; }
+  height: 255px;
+  padding-left: 80px;
+  padding-right: 80px; }
 
 .item-details {
   width: 99.5%;
   height: 500px;
   background: red;
-  display: none;
-  border: 5px solid black; }
+  border: 5px solid black;
+  margin-top: -19px;
+  z-index: 5; }
 
 .items {
   margin: 0 5px;
@@ -36,14 +46,10 @@
   .items img {
     height: 157px;
     min-width: 246px; }
-  .items:hover {
-    transition: 1s;
-    height: 260px;
-    min-width: 485px; }
-    .items:hover img {
-      transition: 1s;
-      height: 260px;
-      min-width: 485px; }
+
+.last-item {
+  min-width: 100px;
+  height: 100px; }
 
 .progress-container {
   width: 100%;
@@ -56,18 +62,18 @@
   width: 0; }
 
 .btn-nav {
-  background: rgba(0, 0, 0, 0.5);
+  background: transparent;
   border: 0;
   position: absolute;
   bottom: 0;
   color: white;
-  top: 22%;
+  top: 13%;
   filter: brightness(100);
   background-position: center;
-  width: 80px;
-  height: 140px; }
+  width: 100px;
+  height: 180px; }
   .btn-nav:hover {
-    background: red;
+    background: rgba(0, 0, 0, 0.5);
     transition: 1s; }
 
 .left {
