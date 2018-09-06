@@ -47,6 +47,8 @@ class App extends Component {
     if (itemActive){
       itemActive.classList.remove("item-active");
     }
+
+    itemStatus.scrollIntoView({block: "center"});
     items.classList.add("item-inactive");
     itemStatus.classList.add("item-active");
     this.setState({ detailState: true });
