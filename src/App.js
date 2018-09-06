@@ -40,29 +40,39 @@ class App extends Component {
 
   showDetail(e){
     let itemActive = document.querySelector(".item-active");
+    let items = document.querySelector(".item-navigation");
+    let itemInactive = document.querySelector(".item-inactive");
     let itemStatus = document.querySelector(`.item-status-`+`${e}`)
 
     if (itemActive){
       itemActive.classList.remove("item-active");
     }
+    items.classList.add("item-inactive");
     itemStatus.classList.add("item-active");
     this.setState({ detailState: true });
   }
 
   closeDetail(){
     let itemActive = document.querySelector(".item-active");
-    
+    let items = document.querySelector(".item-navigation");
+
     itemActive.classList.remove("item-active")
+    items.classList.remove("item-inactive")
     this.setState({ detailState : false})
   }
 
   funDetail(){
     return (
-      <div className="item-details">
-        <button onClick={ this.closeDetail }>
-            close
-        </button>
-      </div>
+      <span className="item-details">
+        <div className="detail-close-wrapper">
+          <button onClick={ this.closeDetail }>
+              close
+          </button>
+        </div>
+        <div className="detail-body">
+
+        </div>
+      </span>
     );
   }
 
@@ -86,11 +96,9 @@ class App extends Component {
 
           </div>
 
-          { this.state.detailState ? this.funDetail() : ""}
+            { this.state.detailState ? this.funDetail() : ""}
 
           </div>
-
-
 
         <h1>hello world!</h1>
 
@@ -98,7 +106,6 @@ class App extends Component {
           <div className="progress-bar" id="myBar"></div>
           {this.renderDetail()}
         </div>
-
 
       </div>
     );
