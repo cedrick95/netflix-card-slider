@@ -48,7 +48,7 @@ class App extends Component {
       itemActive.classList.remove("item-active");
     }
 
-    itemStatus.scrollIntoView({block: "center"});
+    itemStatus.scrollIntoView({inline: "center"});
     items.classList.add("item-inactive");
     itemStatus.classList.add("item-active");
     this.setState({ detailState: true });
@@ -56,16 +56,24 @@ class App extends Component {
 
   closeDetail(){
     let itemActive = document.querySelector(".item-active");
-    let items = document.querySelector(".item-navigation");
+    let itemNav = document.querySelector(".item-navigation");
 
     itemActive.classList.remove("item-active")
-    items.classList.remove("item-inactive")
+    itemNav.classList.remove("item-inactive")
     this.setState({ detailState : false})
+  }
+
+  gotoLastItem(){
+    let itemNav = document.querySelector(".item-navigation");
+    itemNav.scrollLeft  = itemNav.scrollWidth;
+
+    console.log( itemNav.scrollWidth);
   }
 
   funDetail(){
     return (
       <span className="item-details">
+        <span id="pointer"></span>
         <div className="detail-close-wrapper">
           <button onClick={ this.closeDetail }>
               close
@@ -84,6 +92,11 @@ class App extends Component {
         <div className="items-container ">
           <div className="item-wrapper">
             <div className="item-navigation">
+                <div className="first-item">
+                  <h1>Savings</h1>
+                  <p>Lorem ipsum dolor sit amer, lorem ipsum dolor sit amet consectitur, vestibulum ipsum dolor sit amet</p>
+                  <i onClick={this.gotoLastItem}> goto last => </i>
+                </div>
                 {this.renderItems()}
                 <div className="last-item"></div>
             </div>
