@@ -17,12 +17,13 @@ body {
 #pointer2 {
   width: 50px;
   height: 50px;
-  background: red;
+  background: #F2F5F6;
   transform: rotate(45deg);
-  position: absolute;
-  bottom: -81px;
+  position: relative;
+  bottom: -90px;
   left: 39%;
-  display: none; }
+  display: none;
+  top: 30px; }
 
 .items-container {
   display: flex;
@@ -58,28 +59,38 @@ body {
   opacity: 1; }
 
 .item-details {
-  width: 98.5%;
   height: 350px;
-  margin-top: 35px;
-  padding: 11px;
+  padding: 30px 50px 20px;
   background: #F2F5F6;
-  position: relative;
   display: none; }
 
 .first-item {
   min-width: 300px;
   height: 250px;
   margin-right: 16px; }
+  .first-item h3 {
+    font-size: 30px;
+    font-family: Roboto; }
+  .first-item p {
+    font-size: 16px;
+    font-family: Roboto; }
+  .first-item i img {
+    margin-top: 20px; }
 
 .items {
   margin: 0 5px;
   justify-content: center;
   align-items: center;
   display: flex; }
-  .items img {
+  .items i img {
     height: 243px;
     min-width: 385px;
     border-radius: 12px; }
+  .items i p {
+    font-size: 18px;
+    font-family: Roboto;
+    font-weight: 300px;
+    margin: 5px 0 5px 10px; }
 
 .last-item {
   min-width: 100px;
@@ -87,20 +98,29 @@ body {
 
 .detail-close-wrapper {
   display: flex;
-  justify-content: end; }
+  justify-content: flex-end; }
   .detail-close-wrapper button {
-    width: 100px;
-    height: 50px; }
+    background: transparent;
+    border: 0; }
 
 .progress-container {
   width: 100%;
-  height: 8px;
-  background: #ccc; }
+  display: flex;
+  justify-content: center;
+  border-radius: 58px;
+  height: 4px; }
+
+.progress-wrapper {
+  width: 93%;
+  height: 4px;
+  background: #DDDDDD;
+  border-radius: 20px;
+  margin-top: 53px; }
 
 .progress-bar {
-  height: 8px;
+  height: 4px;
   background: #FEA30B;
-  width: 0; }
+  border-radius: inherit; }
 
 .btn-nav {
   background: transparent;
@@ -108,11 +128,10 @@ body {
   position: absolute;
   bottom: 0;
   color: white;
-  top: 13%;
-  filter: brightness(100);
+  width: 120px;
   background-position: center;
-  width: 100px;
-  height: 180px; }
+  height: 300px;
+  top: 0; }
   .btn-nav:hover {
     background: rgba(0, 0, 0, 0.5);
     transition: 1s; }
@@ -121,7 +140,6 @@ body {
   left: 0; }
 
 .right {
-  right: 0;
-  transform: rotate(180deg); }
+  right: 0; }
 
 /*# sourceMappingURL=style.css.map */

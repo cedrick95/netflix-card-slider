@@ -20,14 +20,13 @@ class App extends Component {
     return staticData.map(res => { return (
       <div key={res.id} className={`items`}>
         <div className={`item-status-`+`${res.id}`}>
-          {res.id}
            <i onClick={ () => this.showDetail(res.id) }>
             <img src={ require( `${res.image}` ) } alt={res.image}/>
+            <p>[title]</p>
+            <p>[description]</p>
            </i>
            <div id="pointer2"></div>
-
         </div>
-
       </div>
     ) })
   }
@@ -69,7 +68,7 @@ class App extends Component {
     let itemDetail = document.querySelector(".item-details");
     let progressBar = document.querySelector(".progress-container");
 
-    progressBar.style.display = "block";
+    progressBar.style.display = "flex";
     itemDetail.style.display = "none" ;
     itemActive.classList.remove("item-active")
     itemNav.classList.remove("item-inactive")
@@ -112,7 +111,7 @@ class App extends Component {
         <span id="pointer"></span>
         <div className="detail-close-wrapper">
           <button onClick={ this.closeDetail }>
-              close
+              <img src={ require("./assets/icons/Close-slider.png") } alt="goto last item" />
           </button>
         </div>
 
@@ -129,20 +128,22 @@ class App extends Component {
           <div className="item-wrapper">
             <div className="item-navigation" onScroll={ this.onScrollIndicator }>
                 <div className="first-item">
-                  <h1>Savings</h1>
+                  <h3>Savings</h3>
                   <p>Lorem ipsum dolor sit amer, lorem ipsum dolor sit amet consectitur, vestibulum ipsum dolor sit amet</p>
-                  <i onClick={this.gotoLastItem}> goto last => </i>
+                  <i onClick={this.gotoLastItem}>
+                    <img src={ require("./assets/icons/Arrow-icon-last.png") } alt="goto last item" />
+                  </i>
                 </div>
                 {this.renderItems()}
                 <div className="last-item"></div>
             </div>
 
             <button className="btn-nav left" onClick={ this.previousBtn }>
-              <img src="http://simpleicon.com/wp-content/uploads/arrow-18.png" height={50} width={50} alt="left" />
+              <img src={ require("./assets/icons/left.png") } alt="left" />
             </button>
 
             <button className="btn-nav right" onClick={ this.nextBtn }>
-              <img src="http://simpleicon.com/wp-content/uploads/arrow-18.png" height={50} width={50} alt="right" />
+              <img src={ require("./assets/icons/right.png") }  alt="right" />
             </button>
 
           </div>
@@ -152,7 +153,9 @@ class App extends Component {
           </div>
 
         <div className="progress-container">
-          <div className="progress-bar" id="myBar" style={{ width: `${this.state.scrollIndicator}%` }}></div>
+          <div className="progress-wrapper">
+            <div className="progress-bar" id="myBar" style={{ width: `${this.state.scrollIndicator}%` }}></div>
+          </div>
         </div>
 
       </div>
