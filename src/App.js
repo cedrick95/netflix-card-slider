@@ -4,13 +4,16 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      detailState: false,
       activeItem: false,
-      items : ""
+      items : "",
+      scrollIndicator: 0,
     }
 
     this.showDetail = this.showDetail.bind(this);
     this.closeDetail = this.closeDetail.bind(this);
+    this.onScrollIndicator = this.onScrollIndicator.bind(this);
+    this.nextBtn = this.nextBtn.bind(this);
+    this.previousBtn = this.previousBtn.bind(this);
   }
 
   renderItems(){
@@ -21,13 +24,12 @@ class App extends Component {
            <i onClick={ () => this.showDetail(res.id) }>
             <img src={ require( `${res.image}` ) } alt={res.image}/>
            </i>
+           <div id="pointer2"></div>
+
         </div>
+
       </div>
     ) })
-  }
-
-  renderDetail(){
-
   }
 
   nextBtn(){
@@ -40,34 +42,68 @@ class App extends Component {
 
   showDetail(e){
     let itemActive = document.querySelector(".item-active");
-    let items = document.querySelector(".item-navigation");
+    let itemsNav = document.querySelector(".item-navigation");
     let itemInactive = document.querySelector(".item-inactive");
-    let itemStatus = document.querySelector(`.item-status-`+`${e}`)
+    let itemDetail = document.querySelector(".item-details");
+    let itemStatus = document.querySelector(`.item-status-`+`${e}`);
+    let pointer = document.getElementById("pointer");
+    let progressBar = document.querySelector(".progress-container");
 
     if (itemActive){
       itemActive.classList.remove("item-active");
     }
 
-    itemStatus.scrollIntoView({inline: "center"});
-    items.classList.add("item-inactive");
+    progressBar.style.display = "none";
+    itemDetail.style.display = "block" ;
+    itemsNav.classList.add("item-inactive");
     itemStatus.classList.add("item-active");
-    this.setState({ detailState: true });
+    itemStatus.scrollIntoView({inline: "center"});
+
+    let elemPosition = itemStatus.getBoundingClientRect().left + 159 ;
+    pointer.style.left = `${elemPosition}px` ;
   }
 
   closeDetail(){
     let itemActive = document.querySelector(".item-active");
     let itemNav = document.querySelector(".item-navigation");
+    let itemDetail = document.querySelector(".item-details");
+    let progressBar = document.querySelector(".progress-container");
 
+    progressBar.style.display = "block";
+    itemDetail.style.display = "none" ;
     itemActive.classList.remove("item-active")
     itemNav.classList.remove("item-inactive")
-    this.setState({ detailState : false})
   }
 
   gotoLastItem(){
     let itemNav = document.querySelector(".item-navigation");
     itemNav.scrollLeft  = itemNav.scrollWidth;
+    document.querySelector(".right").style.display = "none";
+    document.querySelector(".left").style.display = "block";
+  }
 
-    console.log( itemNav.scrollWidth);
+  onScrollIndicator(){
+    let itemNav = document.querySelector(".item-navigation");
+    let rightBtn = document.querySelector(".right");
+    let leftBtn = document.querySelector(".left");
+
+    let scrollPosition = itemNav.scrollLeft;
+    let scrollLength = itemNav.scrollWidth - itemNav.clientWidth;
+    let scrolled = (scrollPosition / scrollLength) * 100;
+    this.setState({ scrollIndicator: scrolled });
+
+    if(scrolled > 95){
+      rightBtn.style.display = "none";
+    }
+
+    if(scrolled < 5){
+      leftBtn.style.display = "none";
+    }
+
+    if(scrolled < 95 & scrolled > 5 ){
+      rightBtn.style.display = "block";
+      leftBtn.style.display = "block";
+    }
   }
 
   funDetail(){
@@ -79,8 +115,8 @@ class App extends Component {
               close
           </button>
         </div>
-        <div className="detail-body">
 
+        <div className="detail-body">
         </div>
       </span>
     );
@@ -91,7 +127,7 @@ class App extends Component {
       <div className="App">
         <div className="items-container ">
           <div className="item-wrapper">
-            <div className="item-navigation">
+            <div className="item-navigation" onScroll={ this.onScrollIndicator }>
                 <div className="first-item">
                   <h1>Savings</h1>
                   <p>Lorem ipsum dolor sit amer, lorem ipsum dolor sit amet consectitur, vestibulum ipsum dolor sit amet</p>
@@ -111,15 +147,12 @@ class App extends Component {
 
           </div>
 
-            { this.state.detailState ? this.funDetail() : ""}
+            {  this.funDetail() }
 
           </div>
 
-        <h1>hello world!</h1>
-
         <div className="progress-container">
-          <div className="progress-bar" id="myBar"></div>
-          {this.renderDetail()}
+          <div className="progress-bar" id="myBar" style={{ width: `${this.state.scrollIndicator}%` }}></div>
         </div>
 
       </div>

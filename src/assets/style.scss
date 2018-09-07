@@ -12,12 +12,25 @@ body {
   background: #F2F5F6;
   position: absolute;
   top: -4%;
-  left: 49.5%;
+  // left: 49.5%;
   transform: rotate(45deg);
+  transition: 0s !important;
+  display: none;
+}
+
+#pointer2 {
+  width: 50px;
+  height: 50px;
+  background: red;
+  transform: rotate(45deg);
+  position: absolute;
+  bottom: -81px;
+  left: 39%;
+  display: none;
 }
 
 .App {
-  padding-top: 130px;
+  // padding-top: 130px;
 }
 
 .items-container {
@@ -39,9 +52,14 @@ body {
 
 .item-active {
   padding: 36px 10px 0;
+  position: relative;
 
   img {
     box-shadow: 0 19px 14px -4px rgba(150, 150, 150, 0.5);
+  }
+
+  #pointer2 {
+    display: block;
   }
 }
 
@@ -73,10 +91,10 @@ body {
   width: 98.5%;
   height: 350px;
   margin-top: 35px;
-  z-index: 5;
   padding: 11px;
   background: #F2F5F6;
   position: relative;
+  display: none;
 }
 
 .first-item {
@@ -121,7 +139,7 @@ body {
 
 .progress-bar {
   height: 8px;
-  background: #4caf50;
+  background: #FEA30B;
   width: 0;
 }
 
