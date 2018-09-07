@@ -32,46 +32,50 @@ class App extends Component {
   }
 
   nextBtn(){
-    document.querySelector(".item-navigation").scrollBy(500,0)
+    document.querySelector(".item-navigation").scrollBy(500,0);
   }
 
   previousBtn(){
-    document.querySelector(".item-navigation").scrollBy(-500,0)
+    document.querySelector(".item-navigation").scrollBy(-500,0);
   }
 
   showDetail(e){
-    let itemActive = document.querySelector(".item-active");
-    let itemsNav = document.querySelector(".item-navigation");
-    let itemInactive = document.querySelector(".item-inactive");
-    let itemDetail = document.querySelector(".item-details");
-    let itemStatus = document.querySelector(`.item-status-`+`${e}`);
-    let pointer = document.getElementById("pointer");
-    let progressBar = document.querySelector(".progress-container");
-
-    if (itemActive){
-      itemActive.classList.remove("item-active");
+    const item = {
+      active : document.querySelector(".item-active"),
+      navigation: document.querySelector(".item-navigation"),
+      inactive: document.querySelector(".item-inactive"),
+      detail: document.querySelector(".item-details"),
+      status: document.querySelector(`.item-status-`+`${e}`),
+      pointer: document.getElementById("pointer"),
+      progress: document.querySelector(".progress-container"),
     }
 
-    progressBar.style.display = "none";
-    itemDetail.style.display = "block" ;
-    itemsNav.classList.add("item-inactive");
-    itemStatus.classList.add("item-active");
-    itemStatus.scrollIntoView({inline: "center"});
+    if (item.active){
+      item.active.classList.remove("item-active");
+    }
 
-    let elemPosition = itemStatus.getBoundingClientRect().left + 159 ;
-    pointer.style.left = `${elemPosition}px` ;
+    item.progress.style.display = "none";
+    item.detail.style.display = "block" ;
+    item.navigation.classList.add("item-inactive");
+    item.status.classList.add("item-active");
+    item.status.scrollIntoView({inline: "center"});
+
+    let elemPosition = item.status.getBoundingClientRect().left + 159 ;
+    item.pointer.style.left = `${elemPosition}px` ;
   }
 
   closeDetail(){
-    let itemActive = document.querySelector(".item-active");
-    let itemNav = document.querySelector(".item-navigation");
-    let itemDetail = document.querySelector(".item-details");
-    let progressBar = document.querySelector(".progress-container");
+    const item = {
+      active : document.querySelector(".item-active"),
+      navigation: document.querySelector(".item-navigation"),
+      detail: document.querySelector(".item-details"),
+      progress: document.querySelector(".progress-container"),
+    }
 
-    progressBar.style.display = "flex";
-    itemDetail.style.display = "none" ;
-    itemActive.classList.remove("item-active")
-    itemNav.classList.remove("item-inactive")
+    item.progress.style.display = "flex";
+    item.detail.style.display = "none" ;
+    item.active.classList.remove("item-active")
+    item.navigation.classList.remove("item-inactive")
   }
 
   gotoLastItem(){
@@ -82,26 +86,28 @@ class App extends Component {
   }
 
   onScrollIndicator(){
-    let itemNav = document.querySelector(".item-navigation");
-    let rightBtn = document.querySelector(".right");
-    let leftBtn = document.querySelector(".left");
+    const item = {
+      navigation: document.querySelector(".item-navigation"),
+      right: document.querySelector(".right"),
+      left : document.querySelector(".left")
+    }
 
-    let scrollPosition = itemNav.scrollLeft;
-    let scrollLength = itemNav.scrollWidth - itemNav.clientWidth;
+    let scrollPosition = item.navigation.scrollLeft;
+    let scrollLength = item.navigation.scrollWidth - item.navigation.clientWidth;
     let scrolled = (scrollPosition / scrollLength) * 100;
     this.setState({ scrollIndicator: scrolled });
 
     if(scrolled > 95){
-      rightBtn.style.display = "none";
+      item.right.style.display = "none";
     }
 
     if(scrolled < 5){
-      leftBtn.style.display = "none";
+      item.left.style.display = "none";
     }
 
     if(scrolled < 95 & scrolled > 5 ){
-      rightBtn.style.display = "block";
-      leftBtn.style.display = "block";
+      item.right.style.display = "block";
+      item.left.style.display = "block";
     }
   }
 
