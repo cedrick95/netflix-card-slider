@@ -16,14 +16,32 @@ class App extends Component {
     this.previousBtn = this.previousBtn.bind(this);
   }
 
+  componentDidUpdate(){
+    const item = {
+      right: document.querySelector(".right"),
+      left : document.querySelector(".left"),
+      progress: document.querySelector(".progress-bar").style.width
+    }
+
+    if(this.state.scrollIndicator < 2){
+      item.left.style.display = "none"
+    }
+    if(this.state.scrollIndicator > 98){
+      item.right.style.display = "none"
+      item.left.style.display = "block"
+    }
+  }
+
+
   renderItems(){
     return staticData.map(res => { return (
       <div key={res.id} className={`items`}>
-        <div className={`item-status-`+`${res.id}`}>
+        <div className={ `item-status-`+`${res.id}` }>
            <i onClick={ () => this.showDetail(res.id) }>
             <img src={ require( `${res.image}` ) } alt={res.image}/>
             <p>[title]</p>
             <p>[description]</p>
+            <img className="feature-arrow" src={ require("./assets/icons/show-feature.png")  } alt={res.image}/>
            </i>
            <div id="pointer2"></div>
         </div>
@@ -47,21 +65,24 @@ class App extends Component {
       detail: document.querySelector(".item-details"),
       status: document.querySelector(`.item-status-`+`${e}`),
       pointer: document.getElementById("pointer"),
-      progress: document.querySelector(".progress-container"),
     }
 
-    if (item.active){
-      item.active.classList.remove("item-active");
+    if(item.status.className === `item-status-`+`${e} item-active`){
+      this.closeDetail()
+    }else{
+      if (item.active){
+        item.active.classList.remove("item-active");
+      }
+
+      item.detail.style.display = "block" ;
+      item.navigation.classList.add("item-inactive");
+      item.status.classList.add("item-active");
+      item.status.scrollIntoView({inline: "center"});
+
+      let elemPosition = item.status.getBoundingClientRect().left + 159 ;
+      item.pointer.style.left = `${elemPosition}px` ;
     }
 
-    item.progress.style.display = "none";
-    item.detail.style.display = "block" ;
-    item.navigation.classList.add("item-inactive");
-    item.status.classList.add("item-active");
-    item.status.scrollIntoView({inline: "center"});
-
-    let elemPosition = item.status.getBoundingClientRect().left + 159 ;
-    item.pointer.style.left = `${elemPosition}px` ;
   }
 
   closeDetail(){
@@ -69,10 +90,8 @@ class App extends Component {
       active : document.querySelector(".item-active"),
       navigation: document.querySelector(".item-navigation"),
       detail: document.querySelector(".item-details"),
-      progress: document.querySelector(".progress-container"),
     }
 
-    item.progress.style.display = "flex";
     item.detail.style.display = "none" ;
     item.active.classList.remove("item-active")
     item.navigation.classList.remove("item-inactive")
@@ -97,15 +116,15 @@ class App extends Component {
     let scrolled = (scrollPosition / scrollLength) * 100;
     this.setState({ scrollIndicator: scrolled });
 
-    if(scrolled > 95){
+    if(scrolled > 98){
       item.right.style.display = "none";
     }
 
-    if(scrolled < 5){
+    if(scrolled < 2){
       item.left.style.display = "none";
     }
 
-    if(scrolled < 95 & scrolled > 5 ){
+    if(scrolled < 98 & scrolled > 2 ){
       item.right.style.display = "block";
       item.left.style.display = "block";
     }
@@ -130,20 +149,26 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="topic-header">
+          <h3>Savings</h3>
+        </div>
+        <div className="progress-container">
+          <div className="progress-wrapper">
+            <div className="progress-bar" id="progress-percent" style={{ width: `${this.state.scrollIndicator}%` }}></div>
+          </div>
+        </div>
         <div className="items-container ">
           <div className="item-wrapper">
             <div className="item-navigation" onScroll={ this.onScrollIndicator }>
                 <div className="first-item">
-                  <h3>Savings</h3>
-                  <p>Lorem ipsum dolor sit amer, lorem ipsum dolor sit amet consectitur, vestibulum ipsum dolor sit amet</p>
+                  <p>Choose your travel rewards from airline tickets, hotel/resort accommodation, travel packages to transfer of rewards points to Philippine Airlines' Mabuhay Miles and more! </p>
                   <i onClick={this.gotoLastItem}>
-                    <img src={ require("./assets/icons/Arrow-icon-last.png") } alt="goto last item" />
+                    <img src={ require("./assets/icons/Arrow.png") } alt="goto last item" />
                   </i>
                 </div>
                 {this.renderItems()}
                 <div className="last-item"></div>
             </div>
-
             <button className="btn-nav left" onClick={ this.previousBtn }>
               <img src={ require("./assets/icons/left.png") } alt="left" />
             </button>
@@ -151,19 +176,9 @@ class App extends Component {
             <button className="btn-nav right" onClick={ this.nextBtn }>
               <img src={ require("./assets/icons/right.png") }  alt="right" />
             </button>
-
           </div>
-
-            {  this.funDetail() }
-
-          </div>
-
-        <div className="progress-container">
-          <div className="progress-wrapper">
-            <div className="progress-bar" id="myBar" style={{ width: `${this.state.scrollIndicator}%` }}></div>
-          </div>
+          {  this.funDetail() }
         </div>
-
       </div>
     );
   }
