@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class App extends Component {
   constructor(){
@@ -7,6 +8,7 @@ class App extends Component {
       activeItem: false,
       items : "",
       scrollIndicator: 0,
+      data: []
     }
 
     this.showDetail = this.showDetail.bind(this);
@@ -14,6 +16,12 @@ class App extends Component {
     this.onScrollIndicator = this.onScrollIndicator.bind(this);
     this.nextBtn = this.nextBtn.bind(this);
     this.previousBtn = this.previousBtn.bind(this);
+  }
+
+  componentWillMount(){
+    axios.get(`http://localhost:9005/api/credit-card?_format=json`).then( res => {
+      this.setState({ data: res });
+    });
   }
 
   componentDidUpdate(){
@@ -32,21 +40,50 @@ class App extends Component {
     }
   }
 
+// res.title[0].value
+// res.field_description[0].value
+// res.field_credit_card_image[0].url
+// res.nid[0]
 
   renderItems(){
-    return staticData.map(res => { return (
-      <div key={res.id} className={`items`}>
-        <div className={ `item-status-`+`${res.id}` }>
-           <i onClick={ () => this.showDetail(res.id) }>
-            <img src={ require( `${res.image}` ) } alt={res.image}/>
-            <p>[title]</p>
-            <p>[description]</p>
-            <img className="feature-arrow" src={ require("./assets/icons/show-feature.png")  } alt={res.image}/>
-           </i>
-           <div id="pointer2"></div>
-        </div>
-      </div>
-    ) })
+    console.log(this.state.data.data);
+
+    if(this.state.data.data){
+      return this.state.data.data.map( res =>  {
+        let desc = res.field_description[0].value.replace("<p>","").replace("</p>","")
+
+        return (
+          <div key={res.nid[0].value} className={`items`}>
+            <div className={ `item-status-`+`${res.nid[0].value}` }>
+               <i onClick={ () => this.showDetail(res.nid[0].value) }>
+                <div style={{ position: "relative" }}>
+                  <img src={ `${res.field_credit_card_image[0].url}` } alt={res.field_credit_card_image[0].url}/>
+                  <img className="feature-arrow" src={ require("./assets/icons/show-feature.png")  } alt={res.image}/>
+                </div>
+                <p>{res.title[0].value}</p>
+                <p>{desc}</p>
+               </i>
+               <div id="pointer2"></div>
+            </div>
+          </div>
+        )})
+    }
+    // return staticData.map(res => { return (
+    //   <div key={res.id} className={`items`}>
+    //     <div className={ `item-status-`+`${res.id}` }>
+    //        <i onClick={ () => this.showDetail(res.id) }>
+    //         <div style={{ position: "relative" }}>
+    //           <img src={ require( `${res.image}` ) } alt={res.image}/>
+    //           <img className="feature-arrow" src={ require("./assets/icons/show-feature.png")  } alt={res.image}/>
+    //         </div>
+    //         <p>[title]</p>
+    //         <p>[description]</p>
+    //        </i>
+    //        <div id="pointer2"></div>
+    //     </div>
+    //   </div>
+    // )
+   // })
   }
 
   nextBtn(){
@@ -149,36 +186,45 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="topic-header">
-          <h3>Savings</h3>
-        </div>
-        <div className="progress-container">
-          <div className="progress-wrapper">
-            <div className="progress-bar" id="progress-percent" style={{ width: `${this.state.scrollIndicator}%` }}></div>
+        <div className="feature-slider">
+          <div className="topic-header">
+            <h3>Savings  {/* put title here */} </h3>
           </div>
-        </div>
-        <div className="items-container ">
-          <div className="item-wrapper">
-            <div className="item-navigation" onScroll={ this.onScrollIndicator }>
-                <div className="first-item">
-                  <p>Choose your travel rewards from airline tickets, hotel/resort accommodation, travel packages to transfer of rewards points to Philippine Airlines' Mabuhay Miles and more! </p>
-                  <i onClick={this.gotoLastItem}>
-                    <img src={ require("./assets/icons/Arrow.png") } alt="goto last item" />
-                  </i>
-                </div>
-                {this.renderItems()}
-                <div className="last-item"></div>
+          <div className="progress-container">
+            <div className="progress-wrapper">
+              <div className="progress-bar" id="progress-percent" style={{ width: `${this.state.scrollIndicator}%` }}></div>
             </div>
-            <button className="btn-nav left" onClick={ this.previousBtn }>
-              <img src={ require("./assets/icons/left.png") } alt="left" />
-            </button>
-
-            <button className="btn-nav right" onClick={ this.nextBtn }>
-              <img src={ require("./assets/icons/right.png") }  alt="right" />
-            </button>
           </div>
-          {  this.funDetail() }
+          <div className="items-container ">
+            <div className="item-wrapper">
+              <div className="item-navigation" onScroll={ this.onScrollIndicator }>
+                  <div className="first-item">
+                    <p>
+                        Choose your travel rewards from airline tickets, hotel/resort accommodation,
+                        travel packages to transfer of rewards points to Philippine Airlines' Mabuhay
+                        Miles and more!
+
+                        { /* put description */ }
+                    </p>
+                    <i onClick={this.gotoLastItem}>
+                      <img src={ require("./assets/icons/Arrow.png") } alt="goto last item" />
+                    </i>
+                  </div>
+                  {this.renderItems()}
+                  <div className="last-item"></div>
+              </div>
+              <button className="btn-nav left" onClick={ this.previousBtn }>
+                <img src={ require("./assets/icons/left.png") } alt="left" />
+              </button>
+
+              <button className="btn-nav right" onClick={ this.nextBtn }>
+                <img src={ require("./assets/icons/right.png") }  alt="right" />
+              </button>
+            </div>
+            {  this.funDetail() }
+          </div>
         </div>
+
       </div>
     );
   }
