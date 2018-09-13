@@ -1,24 +1,4 @@
-body {
-  margin: 0;
-}
-
-* {
-  transition: 1s;
-}
-
 #pointer {
-  width: 50px;
-  height: 50px;
-  background: #F2F5F6;
-  position: absolute;
-  top: -4%;
-  // left: 49.5%;
-  transform: rotate(45deg);
-  transition: 0s !important;
-  display: none;
-}
-
-#pointer2 {
   width: 50px;
   height: 50px;
   background: #F2F5F6;
@@ -28,10 +8,6 @@ body {
   left: 44%;
   display: none;
   top: 30px;
-}
-
-.App {
-  // padding-top: 130px;
 }
 
 .items-container {
@@ -64,10 +40,6 @@ body {
 
   img {
     box-shadow: 0 19px 14px -4px rgba(150, 150, 150, 0.5);
-  }
-
-  #pointer2 {
-    display: block;
   }
 }
 

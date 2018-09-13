@@ -78,37 +78,47 @@ class App extends Component {
     return (
       <div className="feature-slider">
           <div className="topic-header">
-            <h3>Savings  {/* put title here */} </h3>
+              {/* put title here */}
+              <h3>Savings</h3>
           </div>
+
+          {/* Scroll Indicator Component */}
           <ScrollIndicator scrollIndicator={this.state.scrollIndicator}/>
+
           <div className="items-container">
-            <div className="item-wrapper">
-              <div className={"item-navigation"} ref={this.getRefNav} onScroll={ this.onScrollIndicator }>
-                  <div className="first-item">
-                    <p>
-                        Choose your travel rewards from airline tickets, hotel/resort accommodation,
-                        travel packages to transfer of rewards points to Philippine Airlines' Mabuhay
-                        Miles and more!
+              <div className="item-wrapper">
+                  <div className={"item-navigation"} ref={this.getRefNav} onScroll={ this.onScrollIndicator }>
+                      <div className="first-item">
+                          { /* put description */ }
+                          <p>
+                              Choose your travel rewards from airline tickets, hotel/resort accommodation,
+                              travel packages to transfer of rewards points to Philippine Airlines' Mabuhay
+                              Miles and more!
+                          </p>
 
-                        { /* put description */ }
-                    </p>
-                    <i onClick={this.gotoLastItem}>
-                      <img src={ require("./assets/icons/Arrow.png") } alt="goto last item" />
-                    </i>
+                          <i onClick={this.gotoLastItem}>
+                            <img src={ require("./assets/icons/Arrow.png") } alt="goto last item" />
+                          </i>
+                      </div>
+
+                      {/* Items Components */}
+                      <Items dataProps={this.state.data} detailVisible={this.state.detailVisible} activeItem={this.showDetail}/>
+
+                      <div className="last-item"></div>
                   </div>
-                  <Items dataProps={this.state.data} detailVisible={this.state.detailVisible} activeItem={this.showDetail}/>
-                  <div className="last-item"></div>
-              </div>
-              <button className={"btn-nav left" + (this.state.leftBtnVisible ? " hide" : "")} onClick={ (this.previousBtn) }>
-                <img src={ require("./assets/icons/left.png") } alt="left" />
-              </button>
 
-              <button className={"btn-nav right" + (this.state.rightBtnVisible ? " hide" : "")} onClick={ (this.nextBtn) }>
-                <img src={ require("./assets/icons/right.png") }  alt="right" />
-              </button>
-            </div>
+                  <button className={"btn-nav left" + (this.state.leftBtnVisible ? " hide" : "")} onClick={ (this.previousBtn) }>
+                      <img src={ require("./assets/icons/left.png") } alt="left" />
+                  </button>
+
+                  <button className={"btn-nav right" + (this.state.rightBtnVisible ? " hide" : "")} onClick={ (this.nextBtn) }>
+                      <img src={ require("./assets/icons/right.png") }  alt="right" />
+                  </button>
+              </div>
+
+            {/* Items Components */}
             {this.state.detailVisible ? <ItemDetail closeDetail={this.closeDetail} /> : ""}
-          </div>
+        </div>
       </div>
     );
   }

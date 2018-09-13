@@ -1,20 +1,4 @@
-body {
-  margin: 0; }
-
-* {
-  transition: 1s; }
-
 #pointer {
-  width: 50px;
-  height: 50px;
-  background: #F2F5F6;
-  position: absolute;
-  top: -4%;
-  transform: rotate(45deg);
-  transition: 0s !important;
-  display: none; }
-
-#pointer2 {
   width: 50px;
   height: 50px;
   background: #F2F5F6;
@@ -45,8 +29,6 @@ body {
     box-shadow: none; }
   .item-active img {
     box-shadow: 0 19px 14px -4px rgba(150, 150, 150, 0.5); }
-  .item-active #pointer2 {
-    display: block; }
 
 .item-inactive i img {
   opacity: 0.5; }
