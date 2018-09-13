@@ -5,14 +5,13 @@ class Items extends React.Component {
   constructor(props){
     super();
     this.state = {
-      itemRef: '',
       activeItem: false,
+
     }
     this.renderItems = this.renderItems.bind(this);
     this.activeItem = this.activeItem.bind(this);
     this.getItemRef = this.getItemRef.bind(this);
   }
-
 
   componentDidUpdate(){
     const item = {
@@ -23,11 +22,13 @@ class Items extends React.Component {
     }
   }
 
+
   clickHandle(e){
     if(this.state.activeItem == e){
       this.setState({ activeItem: false });
       this.props.activeItem({ activeItem: false , itemId: e });
-    }else{
+    }
+    else{
       this.props.activeItem({ activeItem: true , itemId: e })
       this.setState({ activeItem: e });
     }
@@ -35,17 +36,13 @@ class Items extends React.Component {
   }
 
   activeItem(e){
-    if(this.state.activeItem == e){
-      return "item-status item-active";
-    }
-
-    else if(this.state.activeItem == false){
-      return "item-status";
-    }
-
-    if(this.state.activeItem != e){
-      return "item-status item-inactive";
-    }
+      if (this.props.detailVisible && this.state.activeItem == e) {
+        return "item-status item-active";
+      } else if (this.props.detailVisible && this.state.activeItem !== e) {
+        return "item-status item-inactive";
+      } else {
+        return "item-status";
+      }
   }
 
   getItemRef(itemRef){
@@ -53,13 +50,14 @@ class Items extends React.Component {
   }
 
   renderItems(){
+
     if(this.props.dataProps.data){
+      console.log(this.props.dataProps.data);
       return this.props.dataProps.data.map( res =>  {
         let desc = res.field_description[0].value.replace("<p>","").replace("</p>","")
-
         return (
           <div key={res.nid[0].value} className={`items`}>
-            <div className={ `item-`+ `${res.nid[0].value} ` + (this.activeItem(res.nid[0].value)) } ref={this.getItemRef}>
+            <div className={ this.activeItem(res.nid[0].value) } ref={this.getItemRef}>
                <i onClick={ () => this.clickHandle(res.nid[0].value) }>
                 <div style={{ position: "relative" }}>
                   <img src={ `${res.field_credit_card_image[0].url}` } alt={res.field_credit_card_image[0].url}/>

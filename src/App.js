@@ -39,7 +39,7 @@ class App extends Component {
   }
 
   closeDetail(event){
-    this.setState({ detailVisible: event, closeItem: true })
+    this.setState({ detailVisible: event })
   }
 
   gotoLastItem(){
@@ -96,7 +96,7 @@ class App extends Component {
                       <img src={ require("./assets/icons/Arrow.png") } alt="goto last item" />
                     </i>
                   </div>
-                  <Items dataProps={this.state.data} activeItem={this.showDetail} deactivateItem={this.state.closeItem} />
+                  <Items dataProps={this.state.data} detailVisible={this.state.detailVisible} activeItem={this.showDetail}/>
                   <div className="last-item"></div>
               </div>
               <button className={"btn-nav left" + (this.state.leftBtnVisible ? " hide" : "")} onClick={ (this.previousBtn) }>
