@@ -55,12 +55,27 @@ body {
   padding: 36px 10px 0;
   position: relative;
 
+  i {
+    .feature-arrow {
+      transform: rotate(180deg);
+      box-shadow: none;
+    }
+  }
+
   img {
     box-shadow: 0 19px 14px -4px rgba(150, 150, 150, 0.5);
   }
 
   #pointer2 {
     display: block;
+  }
+}
+
+.item-inactive {
+  i {
+    img {
+      opacity: 0.5;
+    }
   }
 }
 
@@ -116,7 +131,7 @@ body {
   // margin-top: 35px;
   padding: 30px 50px 20px;
   background: #F2F5F6;
-  display: none;
+  // display: none;
 }
 
 .topic-header {
@@ -250,10 +265,14 @@ body {
 
 .left {
   left: 0;
-  display: none;
+  // display: none;
 }
 
 .right {
   right: 0;
   // transform: rotate(180deg);
+}
+
+.hide {
+  display: none !important;
 }

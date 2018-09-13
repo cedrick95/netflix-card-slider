@@ -40,10 +40,16 @@ body {
 .item-active {
   padding: 36px 10px 0;
   position: relative; }
+  .item-active i .feature-arrow {
+    transform: rotate(180deg);
+    box-shadow: none; }
   .item-active img {
     box-shadow: 0 19px 14px -4px rgba(150, 150, 150, 0.5); }
   .item-active #pointer2 {
     display: block; }
+
+.item-inactive i img {
+  opacity: 0.5; }
 
 .item-navigation {
   display: flex;
@@ -68,8 +74,7 @@ body {
 .item-details {
   height: 350px;
   padding: 30px 50px 20px;
-  background: #F2F5F6;
-  display: none; }
+  background: #F2F5F6; }
 
 .topic-header {
   padding: 0 8%; }
@@ -162,10 +167,12 @@ body {
     transition: 1s; }
 
 .left {
-  left: 0;
-  display: none; }
+  left: 0; }
 
 .right {
   right: 0; }
+
+.hide {
+  display: none !important; }
 
 /*# sourceMappingURL=style.css.map */
