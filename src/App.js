@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Items from './component/Items'
 import ItemDetail from './component/Item_detail'
 import ScrollIndicator from './component/Scroll_indicator'
-import axios from 'axios';
 
 class App extends Component {
   constructor(){
@@ -24,10 +23,13 @@ class App extends Component {
     this.showDetail = this.showDetail.bind(this);
   }
 
-  componentWillMount(){
-    axios.get(`http://localhost:9005/api/credit-card?_format=json`).then( res => {
-      this.setState({ data: res });
-    });
+  componentDidMount(){
+    // axios.get(`http://localhost:9005/api/credit-card?_format=json`).then( res => {
+    //   this.setState({ data: res });
+    // });
+    this.setState({
+      data: staticData
+    })
   }
 
   nextBtn(){
@@ -129,42 +131,42 @@ export default App;
 const staticData = [
   {
     id: 1,
-    image: "./assets/img/card8.png"
+    image: "../assets/img/card8.png"
   },
   {
     id: 2,
-    image: "./assets/img/card9.png"
+    image: "../assets/img/card9.png"
   },
   {
     id: 3,
-    image: "./assets/img/card7.png"
+    image: "../assets/img/card7.png"
   },
   {
     id: 4,
-    image: "./assets/img/card9.png"
+    image: "../assets/img/card9.png"
   },
   {
     id: 5,
-    image: "./assets/img/card8.png"
+    image: "../assets/img/card8.png"
   },
   {
     id: 6,
-    image: "./assets/img/card6.png"
+    image: "../assets/img/card6.png"
   },
   {
     id: 7,
-    image: "./assets/img/card7.png"
+    image: "../assets/img/card7.png"
   },
   {
     id: 8,
-    image: "./assets/img/card8.png"
+    image: "../assets/img/card8.png"
   },
   {
     id: 9,
-    image: "./assets/img/card9.png"
+    image: "../assets/img/card9.png"
   },
   {
     id: 10,
-    image: "./assets/img/card10.png"
+    image: "../assets/img/card10.png"
   }
 ];

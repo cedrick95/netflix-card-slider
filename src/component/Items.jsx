@@ -1,4 +1,27 @@
 import React from 'react';
+import image1 from "../assets/img/card8.png"
+import image2 from "../assets/img/card9.png"
+import image3 from "../assets/img/card7.png"
+import image4 from "../assets/img/card9.png"
+import image5 from "../assets/img/card8.png"
+import image6 from "../assets/img/card6.png"
+import image7 from "../assets/img/card7.png"
+import image8 from "../assets/img/card8.png"
+import image9 from "../assets/img/card9.png"
+import image10 from "../assets/img/card10.png"
+
+const imahe = [
+  image1,
+  image2,
+  image3,
+  image4,
+  image5,
+  image6,
+  image7,
+  image8,
+  image9,
+  image10,
+]
 
 class Items extends React.Component {
   constructor(props){
@@ -35,19 +58,24 @@ class Items extends React.Component {
   }
 
   renderItems(){
-    if(this.props.dataProps.data){
-      return this.props.dataProps.data.map( res =>  {
-        let desc = res.field_description[0].value.replace("<p>","").replace("</p>","")
+
+    if(this.props.dataProps){
+      return this.props.dataProps.map( (res, index) =>  {
+        // let desc = res.field_description[0].value.replace("<p>","").replace("</p>","")
         return (
-            <div key={res.nid[0].value} className={`items`}>
-                <div className={ this.activeItem(res.nid[0].value) } >
-                     <i onClick={ (e) => this.clickHandle({ id: res.nid[0].value, ref : e.target }) } >
+            <div key={res.id} className={`items`}>
+                <div className={ this.activeItem(res.id) } >
+                     <i onClick={ (e) => this.clickHandle({ id: res.id, ref : e.target }) } >
                           <div style={{ position: "relative" }}>
-                              <img src={ `${res.field_credit_card_image[0].url}` } alt={res.field_credit_card_image[0].url}/>
-                              <img className="feature-arrow" src={ require("../assets/icons/show-feature.png")  } alt={res.image}/>
+                              <img src={imahe[index]} alt={"?"}/>
+                              <img
+                                className="feature-arrow"
+                                src={ require("../assets/icons/show-feature.png")  }
+                                alt={"?"}
+                              />
                           </div>
-                          <p>{res.title[0].value}</p>
-                          <p>{desc}</p>
+                          <p>[title]</p>
+                          <p>[description]</p>
                      </i>
                      <div id="pointer2"></div>
                 </div>
