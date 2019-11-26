@@ -168,23 +168,23 @@ export default App;
 const staticData = [
   {
     id: 1,
-    image: "./assets/img/card1.png"
+    image: "./assets/img/card8.png"
   },
   {
     id: 2,
-    image: "./assets/img/card2.png"
+    image: "./assets/img/card9.png"
   },
   {
     id: 3,
-    image: "./assets/img/card3.png"
+    image: "./assets/img/card7.png"
   },
   {
     id: 4,
-    image: "./assets/img/card4.png"
+    image: "./assets/img/card9.png"
   },
   {
     id: 5,
-    image: "./assets/img/card5.png"
+    image: "./assets/img/card8.png"
   },
   {
     id: 6,
