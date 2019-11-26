@@ -1,27 +1,11 @@
-body {
-  margin: 0; }
-
-* {
-  transition: 1s; }
-
 #pointer {
-  width: 50px;
-  height: 50px;
-  background: #F2F5F6;
-  position: absolute;
-  top: -4%;
-  transform: rotate(45deg);
-  transition: 0s !important;
-  display: none; }
-
-#pointer2 {
   width: 50px;
   height: 50px;
   background: #F2F5F6;
   transform: rotate(45deg);
   position: relative;
   bottom: -90px;
-  left: 39%;
+  left: 44%;
   display: none;
   top: 30px; }
 
@@ -40,37 +24,50 @@ body {
 .item-active {
   padding: 36px 10px 0;
   position: relative; }
+  .item-active i .feature-arrow {
+    transform: rotate(180deg);
+    box-shadow: none; }
   .item-active img {
     box-shadow: 0 19px 14px -4px rgba(150, 150, 150, 0.5); }
-  .item-active #pointer2 {
-    display: block; }
+
+.item-inactive i img {
+  opacity: 0.5; }
 
 .item-navigation {
   display: flex;
   overflow: hidden;
   scroll-behavior: smooth;
-  align-items: center;
-  padding-left: 80px;
-  padding-right: 80px; }
+  padding-left: 8%;
+  padding-right: 8%; }
 
 .item-navigation.item-inactive .items img {
   opacity: 0.5; }
+.item-navigation.item-inactive .items i .feature-arrow {
+  display: none; }
 .item-navigation.item-inactive .items .item-active img {
   opacity: 1; }
+.item-navigation.item-inactive .items .item-active i .feature-arrow {
+  transform: rotate(180deg);
+  transition: 0s; }
+.item-navigation.item-inactive .items .item-active:hover i .feature-arrow {
+  display: block;
+  box-shadow: none; }
 
 .item-details {
   height: 350px;
   padding: 30px 50px 20px;
-  background: #F2F5F6;
-  display: none; }
+  background: #F2F5F6; }
+
+.topic-header {
+  padding: 0 8%; }
+  .topic-header h3 {
+    font-size: 30px;
+    font-family: Roboto; }
 
 .first-item {
   min-width: 300px;
   height: 250px;
   margin-right: 16px; }
-  .first-item h3 {
-    font-size: 30px;
-    font-family: Roboto; }
   .first-item p {
     font-size: 16px;
     font-family: Roboto; }
@@ -80,17 +77,32 @@ body {
 .items {
   margin: 0 5px;
   justify-content: center;
-  align-items: center;
   display: flex; }
-  .items i img {
-    height: 243px;
-    min-width: 385px;
-    border-radius: 12px; }
-  .items i p {
-    font-size: 18px;
-    font-family: Roboto;
-    font-weight: 300px;
-    margin: 5px 0 5px 10px; }
+  .items i {
+    position: relative; }
+    .items i img {
+      height: 243px;
+      min-width: 385px;
+      border-radius: 12px; }
+    .items i p {
+      font-size: 18px;
+      font-family: Roboto;
+      font-weight: 300px;
+      margin: 5px 0 5px 10px; }
+    .items i .feature-arrow {
+      display: none;
+      position: absolute;
+      height: 50px;
+      min-width: 50px;
+      top: 193px;
+      left: 39%;
+      border-radius: 0;
+      transition: 0s; }
+  .items:hover i .feature-arrow {
+    display: block; }
+  .items:hover i p {
+    transition: 0.3s;
+    color: #FF9B06; }
 
 .last-item {
   min-width: 100px;
@@ -108,14 +120,14 @@ body {
   display: flex;
   justify-content: center;
   border-radius: 58px;
-  height: 4px; }
+  height: 4px;
+  margin-bottom: 30px; }
 
 .progress-wrapper {
-  width: 93%;
+  width: 85%;
   height: 4px;
   background: #DDDDDD;
-  border-radius: 20px;
-  margin-top: 53px; }
+  border-radius: 20px; }
 
 .progress-bar {
   height: 4px;
@@ -141,5 +153,8 @@ body {
 
 .right {
   right: 0; }
+
+.hide {
+  display: none !important; }
 
 /*# sourceMappingURL=style.css.map */
